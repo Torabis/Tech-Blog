@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
-  secret: "Secret Secrets Hurt Someone",
+  secret: "techblogapp",
   cookie: {},
   resave: false,
   saveUninitialized: true,
