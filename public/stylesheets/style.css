@@ -1,6 +1,6 @@
 :root{
-  --primary-color: #335c67;
-  --secondary-color: #fff9d7;
+  --primary-color: #0d3b66;
+  --secondary-color: #faf0ca;
 }
 
 * {
@@ -148,7 +148,7 @@
 
   .card-button{
     width:100%;
-    background-color: #444;
+    background-color: var(--primary-color);
     margin-bottom: 10px;
   }
 
