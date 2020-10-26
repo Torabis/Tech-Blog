@@ -1,0 +1,276 @@
+:root{
+  --primary-color: #335c67;
+  --secondary-color: #fff9d7;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #225ca3;
+    font-weight: bold;
+    transition: color .1s;
+  }
+  
+  a:hover {
+    color: #3486eb;
+  }
+  
+  button {
+    background-color: #225ca3;
+    border: 0;
+    padding: 1%;
+    color: white;
+    font-weight: bold;
+    transition: background-color .1s;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #3486eb;
+  }
+  
+  .post-list {
+    margin: 0;
+    padding: 0;
+  }
+  
+  textarea, input {
+    padding: .5%;
+    border: 1px solid #ccc;
+  }
+  
+  textarea:focus, input:focus {
+    outline: none;
+    border: 1px solid #3486eb;
+  }
+  
+  textarea {
+    min-width: 40%;
+    min-height: 100px;
+  }
+  
+  form > div {
+    margin-bottom: 2%;
+  }
+  
+  form label {
+    display: block;
+  }
+  
+  .wrapper {
+    width: 100%;
+    min-height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  header {
+    background-color: var(--primary-color);
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1%;
+    min-height: 100px;
+  }
+
+  header a{
+    font-weight: lighter;
+    color: var(--secondary-color);
+    padding:0px 10px 0px 10px;
+  }
+
+  .nav-bar {
+    width: 75%;
+  }
+  
+  h1{
+    font-weight: bolder;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .logo-div {
+    width: 25%;
+    font-size: 1em;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+
+  }
+  
+  main {
+    flex: 1;
+    padding: 2% 4%;
+    background-color: var(--secondary-color);
+  }
+
+  .card{
+    border: 2px solid var(--primary-color);
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 5px;
+  }
+
+  .card-header{
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 5px 0px 5px 5px;
+    margin: -5px -10px 10px -10px;
+  }
+
+  .card-input{
+    width:100%;
+    border: none;
+  }
+
+  .card-input-textarea{
+    color:black;
+    width:100%;
+    height:60px;
+    border: none;
+    resize: none;
+  }
+
+  .card-button{
+    width:100%;
+    background-color: #444;
+    margin-bottom: 10px;
+  }
+
+  .card-link{
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .card-login-link{
+    color: var(--primary-color);
+    font-size: 1em;
+    font-weight: lighter;
+  }
+
+  .card-post{
+    border: 2px solid var(--primary-color);
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 5px;
+  }
+
+  .card-post-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 5px 0px 5px 5px;
+    margin:-5px -10px 10px -10px;
+  }
+
+  .meta{
+    padding-right:10px;
+  }
+
+  .post-list{
+    list-style-type:none;
+  }
+
+  .list-post{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--secondary-color);
+    background-color: #777;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .new-post-button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px 20px 20px;  
+  }
+
+  .new-post-button{
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: 20px;
+  }
+
+  .btn-no-style {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 100%;
+    font-weight: lighter;
+    transition: color .1s;
+    margin-left: 16px;
+  }
+  
+  .btn-no-style:hover {
+    background: none;
+    color: #3486eb;
+  }
+  
+  .delete-post-btn {
+    background-color: #d41414;
+  }
+  
+  .delete-post-btn:hover {
+    background-color: #ff643d;
+  }
+  
+  .post {
+    margin-bottom: 2%;
+    line-height: 150%;
+  }
+  
+  .post .title span {
+    font-style: italic;
+    font-size: 90%;
+    color: #7d7d7d;
+  }
+  
+  .comment {
+    padding: 1%;
+    margin-bottom: 1%;
+  }
+  
+  .comment:nth-child(odd) {
+    background-color: #fff5eb;
+  }
+  
+  .comment .meta {
+    font-size: 90%;
+    margin-bottom: .5%;
+    opacity: .6;
+  }
+  
+  
+  footer {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+    font-size: 110%;
+  }

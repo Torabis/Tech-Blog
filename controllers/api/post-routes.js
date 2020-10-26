@@ -1,33 +1,32 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../../models');
 const sequelize = require('../../config/connection');
+const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// get all users
+// GET ALL USERS
 router.get('/', (req, res) => {
-    // console.log('======================');
+    console.log('======================');
     Post.findAll({
         attributes: [
             'id',
+            'post_content',
             'title',
             'created_at',
-            'post_content'
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
-        order: [['created_at', 'DESC']],
         include: [
-            // Comment model 
             {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
-                    attributes: ['username', 'twitter', 'github']
+                    attributes: ['username']
                 }
             },
             {
                 model: User,
-                attributes: ['username', 'twitter', 'github']
-            },
+                attributes: ['username']
+            }
         ]
     })
         .then(dbPostData => res.json(dbPostData))
@@ -37,6 +36,7 @@ router.get('/', (req, res) => {
         });
 });
 
+// GET ONE USER
 router.get('/:id', (req, res) => {
     Post.findOne({
         where: {
@@ -44,23 +44,23 @@ router.get('/:id', (req, res) => {
         },
         attributes: [
             'id',
+            'post_content',
             'title',
             'created_at',
-            'post_content'
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
         ],
         include: [
-            // Comment model includes
-            {
-                model: User,
-                attributes: ['username', 'twitter', 'github']
-            },
             {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
-                    attributes: ['username', 'twitter', 'github']
+                    attributes: ['username']
                 }
+            },
+            {
+                model: User,
+                attributes: ['username']
             }
         ]
     })
@@ -77,6 +77,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
+// POST A POST
 router.post('/', withAuth, (req, res) => {
     Post.create({
         title: req.body.title,
@@ -90,16 +91,18 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
+// UPDATE A POST
 router.put('/:id', withAuth, (req, res) => {
-    Post.update({
-            title: req.body.title,
-            post_content: req.body.post_content
+    Post.update(
+        {
+            title: req.body.title
         },
         {
             where: {
                 id: req.params.id
             }
-        })
+        }
+    )
         .then(dbPostData => {
             if (!dbPostData) {
                 res.status(404).json({ message: 'No post found with this id' });
@@ -113,7 +116,9 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
+//DELETE A POST
 router.delete('/:id', withAuth, (req, res) => {
+    console.log('id', req.params.id);
     Post.destroy({
         where: {
             id: req.params.id
